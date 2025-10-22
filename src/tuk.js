@@ -6,7 +6,7 @@ function setupTukCRUD() {
   qs("#btnListTuk").addEventListener("click", async () => {
     const q = qs("#tukSearch").value.trim();
     const res = await apiFetch(
-      "/tuks" + (q ? "?search=" + encodeURIComponent(q) : "")
+      "/tuks" + (q ? "?search=" + encodeURIComponent(q) : ""),
     );
     qs("#tukList").textContent = pretty(res);
   });

@@ -6,16 +6,14 @@ function setupSchemeCRUD() {
   qs("#btnListScheme").addEventListener("click", async () => {
     const q = qs("#schemeSearch").value.trim();
     const res = await apiFetch(
-      "/schemes" + (q ? "?search=" + encodeURIComponent(q) : "")
+      "/schemes" + (q ? "?search=" + encodeURIComponent(q) : ""),
     );
     qs("#schemeList").textContent = pretty(res);
   });
 
   qs("#btnCreateScheme").addEventListener("click", async () => {
-    const form = qs("#formScheme");
     const fd = getFormData("#formScheme");
     delete fd.id;
-    fd.isActive = !!form.isActive?.checked;
     const res = await apiFetch("/schemes", {
       method: "POST",
       body: JSON.stringify(fd),
@@ -24,7 +22,6 @@ function setupSchemeCRUD() {
   });
 
   qs("#btnUpdateScheme").addEventListener("click", async () => {
-    const form = qs("#formScheme");
     const fd = getFormData("#formScheme");
     if (!fd.id) {
       alert("Provide id");
@@ -32,7 +29,6 @@ function setupSchemeCRUD() {
     }
     const id = fd.id;
     delete fd.id;
-    fd.isActive = !!form.isActive?.checked;
     const res = await apiFetch("/schemes/" + id, {
       method: "PUT",
       body: JSON.stringify(fd),

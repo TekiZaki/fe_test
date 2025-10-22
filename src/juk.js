@@ -6,7 +6,7 @@ function setupJukCRUD() {
   qs("#btnListJuk").addEventListener("click", async () => {
     const q = qs("#jukSearch").value.trim();
     const res = await apiFetch(
-      "/juks" + (q ? "?search=" + encodeURIComponent(q) : "")
+      "/juks" + (q ? "?search=" + encodeURIComponent(q) : ""),
     );
     qs("#jukList").textContent = pretty(res);
   });

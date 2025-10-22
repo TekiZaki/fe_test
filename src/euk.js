@@ -6,7 +6,7 @@ function setupEukCRUD() {
   qs("#btnListEuk").addEventListener("click", async () => {
     const q = qs("#eukSearch").value.trim();
     const res = await apiFetch(
-      "/euks" + (q ? "?search=" + encodeURIComponent(q) : "")
+      "/euks" + (q ? "?search=" + encodeURIComponent(q) : ""),
     );
     qs("#eukList").textContent = pretty(res);
   });

@@ -54,5 +54,28 @@ export async function apiFetch(path, opts = {}) {
 
 // Helper to extract form data
 export function getFormData(formSelector) {
-  return Object.fromEntries(new FormData(qs(formSelector)).entries());
+  const form = qs(formSelector);
+  const formData = new FormData(form);
+  const data = {};
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+
+  // Handle checkboxes specifically, as FormData does not include unchecked ones
+  qsa(`${formSelector} input[type="checkbox"]`).forEach((checkbox) => {
+    if (!data.hasOwnProperty(checkbox.name)) {
+      data[checkbox.name] = false; // Set to false if not checked
+    } else {
+      data[checkbox.name] = true; // Set to true if checked
+    }
+  });
+
+  // Convert numbers
+  for (const key in data) {
+    if (form.querySelector(`[name="${key}"][type="number"]`)) {
+      data[key] = data[key] === "" ? null : parseFloat(data[key]);
+    }
+  }
+
+  return data;
 }

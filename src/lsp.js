@@ -6,7 +6,7 @@ function setupLspCRUD() {
   qs("#btnListLsp").addEventListener("click", async () => {
     const q = qs("#lspSearch").value.trim();
     const res = await apiFetch(
-      "/lsps" + (q ? "?search=" + encodeURIComponent(q) : "")
+      "/lsps" + (q ? "?search=" + encodeURIComponent(q) : ""),
     );
     qs("#lspList").textContent = pretty(res);
   });

@@ -8,6 +8,15 @@ import { setupLsp } from "./lsp.js";
 import { setupScheme } from "./scheme.js";
 import { setupJuk } from "./juk.js";
 import { setupTuk } from "./tuk.js";
+import { setupAsesi } from "./asesi.js";
+import { setupUnit } from "./unit.js";
+import { setupPuk } from "./puk.js";
+import { setupBiaya } from "./biaya.js";
+import { setupRekening } from "./rekening.js";
+import { setupSms } from "./sms.js";
+import { setupVerifikasi } from "./verifikasi.js";
+import { setupNotification } from "./notification.js";
+import { setupWebsiteContent } from "./websiteContent.js";
 
 // --- Global Initialization ---
 
@@ -19,10 +28,10 @@ function setupTabs() {
       qs("#" + tab).classList.remove("hidden");
       // mark active
       qsa(".tab-btn").forEach((b) =>
-        b.classList.remove("ring", "ring-indigo-300")
+        b.classList.remove("ring", "ring-indigo-300"),
       );
       btn.classList.add("ring", "ring-indigo-300");
-    })
+    }),
   );
   // default open
   qsa(".tab-btn")[0].click();
@@ -54,4 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScheme();
   setupJuk();
   setupTuk();
+  setupAsesi();
+  setupUnit();
+  setupPuk();
+  setupBiaya();
+  setupRekening();
+  setupSms();
+  setupVerifikasi();
+  setupNotification();
+  setupWebsiteContent();
 });

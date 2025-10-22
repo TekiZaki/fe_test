@@ -13,7 +13,7 @@
         <h1 class="text-2xl font-bold">LSP API Tester</h1>
         <p class="text-sm text-slate-600">
           Simple single-page tester for endpoints: auth, users, euk, lsp,
-          scheme, tuk.
+          scheme, tuk, juk, asesi, unit.
         </p>
       </header>
 
@@ -91,6 +91,61 @@
             data-tab="tuk"
           >
             TUK
+          </button>
+          <!-- NEW TABS -->
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="asesi"
+          >
+            Asesi
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="unit"
+          >
+            Unit Kompetensi
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="puk"
+          >
+            PUK
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="biaya"
+          >
+            Biaya
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="rekening"
+          >
+            Rekening
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="sms"
+          >
+            SMS
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="verifikasi"
+          >
+            Verifikasi
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="notification"
+          >
+            Notifications
+          </button>
+          <button
+            class="tab-btn px-3 py-2 bg-white border rounded"
+            data-tab="websiteContent"
+          >
+            Website Content
           </button>
         </div>
       </nav>
@@ -827,6 +882,1001 @@
               </form>
               <pre
                 id="tukCrudResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: ASESI TAB -->
+        <section
+          id="asesi"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Asesi Management</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List All Asesi (Admin)</h3>
+              <div class="flex flex-col gap-2 mt-2">
+                <input
+                  id="asesiSearch"
+                  placeholder="Search (name, username, reg. no.)"
+                  class="w-full p-2 border rounded"
+                />
+                <div class="flex gap-2">
+                  <select
+                    id="asesiStatusFilter"
+                    class="flex-1 p-2 border rounded"
+                  >
+                    <option value="">All Status</option>
+                    <option value="belum terverifikasi">Unverified</option>
+                    <option value="terverifikasi">Verified</option>
+                    <option value="kompeten">Competent</option>
+                    <option value="belum kompeten">Not Competent</option>
+                  </select>
+                  <select
+                    id="asesiBlockedFilter"
+                    class="flex-1 p-2 border rounded"
+                  >
+                    <option value="">All Block Status</option>
+                    <option value="false">Not Blocked</option>
+                    <option value="true">Blocked</option>
+                  </select>
+                  <button
+                    id="btnListAsesi"
+                    class="px-3 py-2 bg-sky-600 text-white rounded"
+                  >
+                    List
+                  </button>
+                </div>
+              </div>
+              <pre
+                id="asesiList"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">
+                Create / Update / Delete Asesi (Admin)
+              </h3>
+              <form id="formAsesi" class="space-y-2 mt-2">
+                <input
+                  name="id"
+                  placeholder="(optional) id for update/delete"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="username"
+                  placeholder="username (required for create)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="password (required for create)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="email"
+                  placeholder="email (required for create)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="fullName"
+                  placeholder="full_name"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="ktpNumber"
+                  placeholder="ktp_number"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="phoneNumber"
+                  placeholder="phone_number"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="address"
+                  placeholder="address (e.g., Kota/Kabupaten: Bandung, Provinsi: Jawa Barat)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="registrationNumber"
+                  placeholder="registration_number (required for create)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="education"
+                  placeholder="education"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="schemeId"
+                  placeholder="schemeId (numeric, required for create)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="assessmentDate"
+                  type="date"
+                  placeholder="assessmentDate (YYYY-MM-DD)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="plottingAsesor"
+                  placeholder="plottingAsesor"
+                  class="w-full p-2 border rounded"
+                />
+                <select name="status" class="w-full p-2 border rounded">
+                  <option value="belum terverifikasi">
+                    belum terverifikasi
+                  </option>
+                  <option value="terverifikasi">terverifikasi</option>
+                  <option value="kompeten">kompeten</option>
+                  <option value="belum kompeten">belum kompeten</option>
+                </select>
+                <label class="flex items-center gap-2"
+                  ><input name="isBlocked" type="checkbox" /> isBlocked</label
+                >
+                <input
+                  name="documentsStatus"
+                  placeholder="documentsStatus"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="certificateStatus"
+                  placeholder="certificateStatus"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="photoUrl"
+                  placeholder="photoUrl"
+                  class="w-full p-2 border rounded"
+                />
+                <div class="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    id="btnCreateAsesi"
+                    class="px-3 py-2 bg-green-600 text-white rounded"
+                  >
+                    Create
+                  </button>
+                  <button
+                    type="button"
+                    id="btnGetAsesiById"
+                    class="px-3 py-2 bg-indigo-600 text-white rounded"
+                  >
+                    Get By ID
+                  </button>
+                  <button
+                    type="button"
+                    id="btnUpdateAsesi"
+                    class="px-3 py-2 bg-amber-600 text-white rounded"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    id="btnDeleteAsesi"
+                    class="px-3 py-2 bg-red-600 text-white rounded"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    id="btnVerifyAsesi"
+                    class="px-3 py-2 bg-blue-500 text-white rounded"
+                  >
+                    Verify
+                  </button>
+                  <button
+                    type="button"
+                    id="btnBlockAsesi"
+                    class="px-3 py-2 bg-red-500 text-white rounded"
+                  >
+                    Block
+                  </button>
+                  <button
+                    type="button"
+                    id="btnUnblockAsesi"
+                    class="px-3 py-2 bg-green-500 text-white rounded"
+                  >
+                    Unblock
+                  </button>
+                  <button
+                    type="button"
+                    id="fillAsesiFormDummy"
+                    class="px-3 py-2 bg-slate-200 rounded"
+                  >
+                    Fill dummy
+                  </button>
+                </div>
+              </form>
+              <pre
+                id="asesiCrudResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-96 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Import Asesi (Admin)</h3>
+              <p class="text-sm text-slate-500 mb-2">
+                Simulates importing an array of Asesi data. For actual Excel
+                import, you'd parse Excel first.
+              </p>
+              <textarea
+                id="asesiImportData"
+                class="w-full p-2 border rounded h-32 text-xs"
+                placeholder='[{"username": "import_asesi1", "password": "pass", "email": "import1@mail.com", "fullName": "Import Asesi 1", "registrationNumber": "REG001", "schemeCode": "SKM-02-LSP Batik", "address": "Kota/Kabupaten: Bandung, Provinsi: Jawa Barat"}, ...]'
+              ></textarea>
+              <button
+                id="btnImportAsesi"
+                class="mt-2 px-3 py-2 bg-purple-600 text-white rounded"
+              >
+                Import Asesi (JSON)
+              </button>
+              <pre
+                id="asesiImportResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Public Asesi Data</h3>
+              <div class="space-y-2 mt-2">
+                <button
+                  id="btnListProvinces"
+                  class="px-3 py-2 bg-blue-600 text-white rounded"
+                >
+                  List Provinces
+                </button>
+                <div class="flex gap-2">
+                  <input
+                    id="provinceIdForCities"
+                    placeholder="Province ID"
+                    type="number"
+                    value="1"
+                    class="flex-1 p-2 border rounded"
+                  />
+                  <button
+                    id="btnListCities"
+                    class="px-3 py-2 bg-blue-600 text-white rounded"
+                  >
+                    List Cities by Province
+                  </button>
+                </div>
+                <div class="flex gap-2">
+                  <input
+                    id="cityIdForAsesi"
+                    placeholder="City ID"
+                    type="number"
+                    value="1"
+                    class="flex-1 p-2 border rounded"
+                  />
+                  <button
+                    id="btnListAsesiByCity"
+                    class="px-3 py-2 bg-blue-600 text-white rounded"
+                  >
+                    List Asesi by City
+                  </button>
+                </div>
+              </div>
+              <pre
+                id="publicAsesiResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: UNIT KOMPETENSI TAB -->
+        <section
+          id="unit"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Unit Kompetensi & Detail</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List Units</h3>
+              <div class="flex flex-col gap-2 mt-2">
+                <input
+                  id="unitSearch"
+                  placeholder="search unit"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  id="unitSchemeIdFilter"
+                  placeholder="Filter by Scheme ID (numeric)"
+                  class="w-full p-2 border rounded"
+                />
+                <button
+                  id="btnListUnits"
+                  class="px-3 py-2 bg-sky-600 text-white rounded"
+                >
+                  List
+                </button>
+              </div>
+              <pre
+                id="unitList"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Unit Detail (incl. Elemen & KUK)</h3>
+              <div class="flex gap-2 mt-2">
+                <input
+                  id="unitDetailId"
+                  placeholder="Unit ID"
+                  class="flex-1 p-2 border rounded"
+                />
+                <button
+                  id="btnGetUnitDetail"
+                  class="px-3 py-2 bg-indigo-600 text-white rounded"
+                >
+                  Get Detail
+                </button>
+              </div>
+              <pre
+                id="unitDetailResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded md:col-span-2">
+              <h3 class="font-medium">Create Unit / Elemen / KUK (Admin)</h3>
+              <div class="grid md:grid-cols-3 gap-4 mt-2">
+                <div class="col-span-1 border p-2 rounded">
+                  <h4 class="font-medium mb-2">Create Unit</h4>
+                  <form id="formCreateUnit" class="space-y-2">
+                    <input
+                      name="schemeId"
+                      placeholder="Scheme ID (numeric)"
+                      type="number"
+                      class="w-full p-2 border rounded"
+                    />
+                    <input
+                      name="kodeUnit"
+                      placeholder="Kode Unit"
+                      class="w-full p-2 border rounded"
+                    />
+                    <input
+                      name="namaUnit"
+                      placeholder="Nama Unit"
+                      class="w-full p-2 border rounded"
+                    />
+                    <input
+                      name="jenisStandar"
+                      placeholder="Jenis Standar"
+                      class="w-full p-2 border rounded"
+                    />
+                    <div class="flex gap-2">
+                      <button class="px-3 py-2 bg-green-600 text-white rounded">
+                        Create Unit
+                      </button>
+                      <button
+                        type="button"
+                        id="fillUnitDummy"
+                        class="px-3 py-2 bg-slate-200 rounded"
+                      >
+                        Fill dummy
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="col-span-1 border p-2 rounded">
+                  <h4 class="font-medium mb-2">Create Elemen</h4>
+                  <form id="formCreateElemen" class="space-y-2">
+                    <input
+                      name="unitId"
+                      placeholder="Target Unit ID (numeric)"
+                      type="number"
+                      class="w-full p-2 border rounded"
+                    />
+                    <input
+                      name="namaElemen"
+                      placeholder="Nama Elemen"
+                      class="w-full p-2 border rounded"
+                    />
+                    <div class="flex gap-2">
+                      <button class="px-3 py-2 bg-green-600 text-white rounded">
+                        Create Elemen
+                      </button>
+                      <button
+                        type="button"
+                        id="fillElemenDummy"
+                        class="px-3 py-2 bg-slate-200 rounded"
+                      >
+                        Fill dummy
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="col-span-1 border p-2 rounded">
+                  <h4 class="font-medium mb-2">Create KUK</h4>
+                  <form id="formCreateKuk" class="space-y-2">
+                    <input
+                      name="elemenId"
+                      placeholder="Target Elemen ID (numeric)"
+                      type="number"
+                      class="w-full p-2 border rounded"
+                    />
+                    <textarea
+                      name="deskripsi"
+                      placeholder="Deskripsi KUK"
+                      class="w-full p-2 border rounded"
+                    ></textarea>
+                    <div class="flex gap-2">
+                      <button class="px-3 py-2 bg-green-600 text-white rounded">
+                        Create KUK
+                      </button>
+                      <button
+                        type="button"
+                        id="fillKukDummy"
+                        class="px-3 py-2 bg-slate-200 rounded"
+                      >
+                        Fill dummy
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <pre
+                id="unitCrudResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+        <!-- NEW: PUK TAB -->
+        <section
+          id="puk"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Peserta Uji Kompetensi (PUK)</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Get Peserta by Jadwal ID</h3>
+              <div class="flex gap-2 mt-2">
+                <input
+                  id="pukJadwalId"
+                  placeholder="Jadwal ID"
+                  type="number"
+                  class="flex-1 p-2 border rounded"
+                />
+                <button
+                  id="btnGetPeserta"
+                  class="px-3 py-2 bg-sky-600 text-white rounded"
+                >
+                  Get
+                </button>
+              </div>
+              <pre
+                id="pukListResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Add / Remove Peserta (Admin)</h3>
+              <form id="formPuk" class="space-y-2 mt-2">
+                <input
+                  name="jadwalId"
+                  placeholder="Jadwal ID"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="asesiId"
+                  placeholder="Asesi ID (for add)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="pesertaId"
+                  placeholder="Peserta ID (for delete)"
+                  class="w-full p-2 border rounded"
+                />
+                <div class="flex gap-2">
+                  <button
+                    type="button"
+                    id="btnAddPeserta"
+                    class="px-3 py-2 bg-green-600 text-white rounded"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    id="btnRemovePeserta"
+                    class="px-3 py-2 bg-red-600 text-white rounded"
+                  >
+                    Remove
+                  </button>
+                  <button
+                    type="button"
+                    id="fillPukDummy"
+                    class="px-3 py-2 bg-slate-200 rounded"
+                  >
+                    Fill dummy
+                  </button>
+                </div>
+              </form>
+              <pre
+                id="pukCrudResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: BIAYA TAB -->
+        <section
+          id="biaya"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Biaya Management (Admin Only)</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List Biaya</h3>
+              <button
+                id="btnListBiaya"
+                class="mt-2 px-3 py-2 bg-sky-600 text-white rounded"
+              >
+                List All Biaya
+              </button>
+              <pre
+                id="biayaListResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Create / Update / Delete Biaya</h3>
+              <form id="formBiaya" class="space-y-2 mt-2">
+                <input
+                  name="id"
+                  placeholder="(optional) ID for update/delete"
+                  type="number"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="schemeId"
+                  placeholder="Scheme ID (numeric)"
+                  type="number"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="jenisBiaya"
+                  placeholder="Jenis Biaya (e.g., Pendaftaran, Sertifikasi)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="nominal"
+                  placeholder="Nominal (numeric)"
+                  type="number"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="standar"
+                  placeholder="Standar (optional, e.g., BNSP)"
+                  class="w-full p-2 border rounded"
+                />
+                <div class="flex gap-2">
+                  <button
+                    type="button"
+                    id="btnCreateBiaya"
+                    class="px-3 py-2 bg-green-600 text-white rounded"
+                  >
+                    Create
+                  </button>
+                  <button
+                    type="button"
+                    id="btnUpdateBiaya"
+                    class="px-3 py-2 bg-amber-600 text-white rounded"
+                  >
+                    Update (use ID)
+                  </button>
+                  <button
+                    type="button"
+                    id="btnDeleteBiaya"
+                    class="px-3 py-2 bg-red-600 text-white rounded"
+                  >
+                    Delete (use ID)
+                  </button>
+                  <button
+                    type="button"
+                    id="fillBiayaDummy"
+                    class="px-3 py-2 bg-slate-200 rounded"
+                  >
+                    Fill dummy
+                  </button>
+                </div>
+              </form>
+              <pre
+                id="biayaCrudResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: REKENING TAB -->
+        <section
+          id="rekening"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Rekening Management (Admin Only)</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List Rekening</h3>
+              <button
+                id="btnListRekening"
+                class="mt-2 px-3 py-2 bg-sky-600 text-white rounded"
+              >
+                List All Rekening
+              </button>
+              <pre
+                id="rekeningListResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Create / Update / Delete Rekening</h3>
+              <form id="formRekening" class="space-y-2 mt-2">
+                <input
+                  name="id"
+                  placeholder="(optional) ID for update/delete"
+                  type="number"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="bank"
+                  placeholder="Nama Bank"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="nomor"
+                  placeholder="Nomor Rekening"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="atasNama"
+                  placeholder="Atas Nama"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="namaLsp"
+                  placeholder="Nama LSP (optional)"
+                  class="w-full p-2 border rounded"
+                />
+                <div class="flex gap-2">
+                  <button
+                    type="button"
+                    id="btnCreateRekening"
+                    class="px-3 py-2 bg-green-600 text-white rounded"
+                  >
+                    Create
+                  </button>
+                  <button
+                    type="button"
+                    id="btnUpdateRekening"
+                    class="px-3 py-2 bg-amber-600 text-white rounded"
+                  >
+                    Update (use ID)
+                  </button>
+                  <button
+                    type="button"
+                    id="btnDeleteRekening"
+                    class="px-3 py-2 bg-red-600 text-white rounded"
+                  >
+                    Delete (use ID)
+                  </button>
+                  <button
+                    type="button"
+                    id="fillRekeningDummy"
+                    class="px-3 py-2 bg-slate-200 rounded"
+                  >
+                    Fill dummy
+                  </button>
+                </div>
+              </form>
+              <pre
+                id="rekeningCrudResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: SMS TAB -->
+        <section
+          id="sms"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">SMS Management (Admin Only)</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List Incoming SMS</h3>
+              <button
+                id="btnListSmsMasuk"
+                class="mt-2 px-3 py-2 bg-sky-600 text-white rounded"
+              >
+                List SMS Masuk
+              </button>
+              <pre
+                id="smsMasukResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List Outgoing SMS</h3>
+              <button
+                id="btnListSmsKeluar"
+                class="mt-2 px-3 py-2 bg-sky-600 text-white rounded"
+              >
+                List SMS Keluar
+              </button>
+              <pre
+                id="smsKeluarResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+
+            <div class="p-3 border rounded md:col-span-2">
+              <h3 class="font-medium">Send SMS</h3>
+              <form id="formSendSms" class="space-y-2 mt-2">
+                <input
+                  name="penerimaNama"
+                  placeholder="Penerima Nama"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="penerimaNomor"
+                  placeholder="Penerima Nomor (e.g., 08123...)"
+                  class="w-full p-2 border rounded"
+                />
+                <textarea
+                  name="isiPesan"
+                  placeholder="Isi Pesan SMS"
+                  class="w-full p-2 border rounded h-24"
+                ></textarea>
+                <select name="status" class="w-full p-2 border rounded">
+                  <option value="Menunggu">Menunggu</option>
+                  <option value="Terkirim">Terkirim</option>
+                  <option value="Gagal">Gagal</option>
+                </select>
+                <div class="flex gap-2">
+                  <button
+                    type="button"
+                    id="btnSendSms"
+                    class="px-3 py-2 bg-green-600 text-white rounded"
+                  >
+                    Send SMS
+                  </button>
+                  <button
+                    type="button"
+                    id="fillSmsDummy"
+                    class="px-3 py-2 bg-slate-200 rounded"
+                  >
+                    Fill dummy
+                  </button>
+                </div>
+              </form>
+              <pre
+                id="sendSmsResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: VERIFIKASI TAB -->
+        <section
+          id="verifikasi"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Verifikasi Asesi (Admin Only)</h2>
+          <div class="grid md:grid-cols-1 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Get Asesi Verification Data</h3>
+              <div class="flex gap-2 mt-2">
+                <input
+                  id="asesiIdVerifikasi"
+                  placeholder="Asesi ID"
+                  type="number"
+                  class="flex-1 p-2 border rounded"
+                />
+                <button
+                  id="btnGetVerifikasiData"
+                  class="px-3 py-2 bg-indigo-600 text-white rounded"
+                >
+                  Fetch Data
+                </button>
+                <button
+                  type="button"
+                  id="fillVerifikasiDummy"
+                  class="px-3 py-2 bg-slate-200 rounded"
+                >
+                  Fill dummy
+                </button>
+              </div>
+              <pre
+                id="verifikasiResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-96 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: NOTIFICATION TAB -->
+        <section
+          id="notification"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Notifications</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List Notifications</h3>
+              <div class="flex flex-col gap-2 mt-2">
+                <input
+                  id="notificationUserId"
+                  placeholder="Filter by User ID (optional)"
+                  class="w-full p-2 border rounded"
+                />
+                <select id="notificationIsRead" class="w-full p-2 border rounded">
+                  <option value="">All</option>
+                  <option value="true">Read</option>
+                  <option value="false">Unread</option>
+                </select>
+                <button
+                  id="btnListNotifications"
+                  class="px-3 py-2 bg-sky-600 text-white rounded"
+                >
+                  List
+                </button>
+              </div>
+              <pre
+                id="notificationListResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">Actions</h3>
+              <div class="flex gap-2 mt-2">
+                <input
+                  id="notificationActionId"
+                  placeholder="Notification ID"
+                  class="flex-1 p-2 border rounded"
+                />
+                <button
+                  id="btnGetNotificationById"
+                  class="px-3 py-2 bg-indigo-600 text-white rounded"
+                >
+                  Get by ID
+                </button>
+                <button
+                  id="btnMarkAsRead"
+                  class="px-3 py-2 bg-green-600 text-white rounded"
+                >
+                  Mark as Read
+                </button>
+              </div>
+              <pre
+                id="notificationActionResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
+              ></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEW: WEBSITE CONTENT TAB -->
+        <section
+          id="websiteContent"
+          class="tab-content hidden bg-white p-4 rounded shadow"
+        >
+          <h2 class="font-semibold mb-2">Website Content</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">List Content</h3>
+              <div class="flex flex-col gap-2 mt-2">
+                <input
+                  id="wcSearch"
+                  placeholder="Search"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  id="wcCategory"
+                  placeholder="Filter by Category (e.g., news, article)"
+                  class="w-full p-2 border rounded"
+                />
+                <button
+                  id="btnListWc"
+                  class="px-3 py-2 bg-sky-600 text-white rounded"
+                >
+                  List
+                </button>
+              </div>
+              <pre
+                id="wcListResult"
+                class="mt-3 bg-slate-100 p-2 rounded max-h-64 overflow-auto"
+              ></pre>
+            </div>
+            <div class="p-3 border rounded">
+              <h3 class="font-medium">
+                Create / Update / Delete Content (Admin)
+              </h3>
+              <form id="formWc" class="space-y-2 mt-2">
+                <input
+                  name="id"
+                  placeholder="(optional) ID for update/delete"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="title"
+                  placeholder="Title"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="subtitle"
+                  placeholder="Subtitle"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="category"
+                  placeholder="Category (e.g., news)"
+                  class="w-full p-2 border rounded"
+                />
+                <input
+                  name="publishDate"
+                  type="date"
+                  class="w-full p-2 border rounded"
+                />
+                <textarea
+                  name="description"
+                  placeholder="Short description"
+                  class="w-full p-2 border rounded h-20"
+                ></textarea>
+                <textarea
+                  name="slateContent"
+                  placeholder="Slate Content (JSON format)"
+                  class="w-full p-2 border rounded h-24"
+                ></textarea>
+                <div class="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    id="btnCreateWc"
+                    class="px-3 py-2 bg-green-600 text-white rounded"
+                  >
+                    Create
+                  </button>
+                  <button
+                    type="button"
+                    id="btnUpdateWc"
+                    class="px-3 py-2 bg-amber-600 text-white rounded"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    id="btnDeleteWc"
+                    class="px-3 py-2 bg-red-600 text-white rounded"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    id="fillWcDummy"
+                    class="px-3 py-2 bg-slate-200 rounded"
+                  >
+                    Fill dummy
+                  </button>
+                </div>
+              </form>
+              <pre
+                id="wcCrudResult"
                 class="mt-3 bg-slate-100 p-2 rounded max-h-48 overflow-auto"
               ></pre>
             </div>
